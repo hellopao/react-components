@@ -1,6 +1,6 @@
 {
   "name": "react-easy-datepicker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/datePicker.js",
   "scripts": {
@@ -11,7 +11,6 @@
     "react-component",
     "datepicker"
   ],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "moment": "^2.10.6",
@@ -27,5 +26,13 @@
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.3",
     "webpack": "^1.12.1"
-  }
+  },
+  "author": {
+    "name": "qinjia",
+    "email": "qinjia@outlook.com"
+  },
+  "homepage": "https://github.com/hellopao/react-components",
+  "_id": "react-easy-datepicker@0.0.3",
+  "_from": "react-easy-datepicker@"
+
 }
