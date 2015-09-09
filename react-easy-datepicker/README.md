@@ -1,4 +1,5 @@
 ### datePicker 
+a datepicker component for react
 
 ## Install
 
