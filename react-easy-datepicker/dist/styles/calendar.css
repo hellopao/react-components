@@ -1,0 +1,56 @@
+.calendar {
+	width:240px;
+	padding:5px;
+	background: #fff;
+	border: 1px solid #eee;
+	cursor: pointer;
+	font-size: 14px;
+	margin-top: 1px;
+	position: absolute;
+	top:25px;
+	z-index:2;
+}
+
+.calendar-bar {
+	width:100%;
+	margin:5px 0;
+}
+
+.calendar-bar span {
+	display: inline-block;
+	text-align: center;
+}
+
+.calendar-bar span.next {
+	width:20%;
+}
+
+.calendar-bar span.prev {
+	width:20%;
+}
+
+.calendar-bar span.prev a, .calendar-bar span.next a{
+	text-decoration: none;
+	color: #000;
+	display: inline-block;
+	width:20px;
+}
+
+.calendar-bar span.time {
+	width:60%;
+	letter-spacing: 2px;
+}
+
+.calendar-table {
+	width:100%;
+}
+
+.calendar-table td {
+	text-align: center;
+	padding:5px;
+}
+
+.calendar-table td.active {
+	background: #ff7713;
+	color: #fff;
+}
