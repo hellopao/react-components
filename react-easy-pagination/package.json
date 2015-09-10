@@ -1,6 +1,6 @@
 {
   "name": "react-easy-pagination",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/pagination.js",
   "scripts": {
@@ -31,6 +31,6 @@
     "email": "qinjia@outlook.com"
   },
   "homepage": "https://github.com/hellopao/react-components",
-  "_id": "react-easy-pagination@0.0.1",
+  "_id": "react-easy-pagination@0.0.2",
   "_from": "react-easy-pagination@"
 }

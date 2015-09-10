@@ -21,6 +21,17 @@ var Pagination = React.createClass({
 		this.props.onPageChage && this.props.onPageChage(page);
 	},
 
+	handleKeyUp: function handleKeyUp(e) {
+		if (e.keyCode === 13) {
+			var page = Number(e.target.value);
+			var pageCount = Math.ceil(this.props.totalCount / this.props.pageSize);
+
+			if (typeof page === "number" && page > 0 && page <= pageCount) {
+				this.changePage(page);
+			}
+		}
+	},
+
 	render: function render() {
 		var pageCount = Math.ceil(this.props.totalCount / this.props.pageSize);
 
@@ -38,66 +49,75 @@ var Pagination = React.createClass({
 				),
 				'条记录'
 			),
-			React.createElement(
-				'span',
-				{ style: { visibility: this.state.current === 1 ? 'hidden' : 'visible' } },
-				React.createElement(
-					'a',
-					{ href: 'javascript:;', onClick: this.changePage.bind(this, this.state.current - 1) },
-					'上一页'
-				)
-			),
-			React.createElement(
-				'span',
-				{ className: 'page' },
-				Array(pageCount + 1).join('0').split('').map((function (item, index) {
-					if (index > 4 && index < pageCount - 1 && index !== this.state.current - 1) {
-						return null;
-					}
+			[''].map((function () {
+				if (!this.props.totalCount) {
+					return null;
+				}
+				return React.createElement(
+					'div',
+					{ style: { display: "inline-block" } },
+					React.createElement(
+						'span',
+						{ style: { visibility: this.state.current === 1 ? 'hidden' : 'visible' } },
+						React.createElement(
+							'a',
+							{ href: 'javascript:;', onClick: this.changePage.bind(this, this.state.current - 1) },
+							'上一页'
+						)
+					),
+					React.createElement(
+						'span',
+						{ className: 'page' },
+						Array(pageCount + 1).join('0').split('').map((function (item, index) {
+							if (index > 4 && index < pageCount - 1 && index !== this.state.current - 1) {
+								return null;
+							}
 
-					if (index > 3 && index < pageCount - 1 && index !== this.state.current - 1) {
-						return React.createElement(
-							'span',
+							if (index > 3 && index < pageCount - 1 && index !== this.state.current - 1) {
+								return React.createElement(
+									'span',
+									null,
+									'...'
+								);
+							}
+							return React.createElement(
+								'a',
+								{ href: 'javascript:;',
+									className: this.state.current === index + 1 ? 'active' : '',
+									onClick: this.changePage.bind(this, index + 1) },
+								index + 1
+							);
+						}).bind(this))
+					),
+					React.createElement(
+						'span',
+						{ style: { visibility: this.state.current === pageCount ? 'hidden' : 'visible' } },
+						React.createElement(
+							'a',
+							{ href: 'javascript:;', onClick: this.changePage.bind(this, this.state.current + 1) },
+							'下一页'
+						)
+					),
+					React.createElement(
+						'span',
+						null,
+						'共',
+						React.createElement(
+							'var',
 							null,
-							'...'
-						);
-					}
-					return React.createElement(
-						'a',
-						{ href: 'javascript:;',
-							className: this.state.current === index + 1 ? 'active' : '',
-							onClick: this.changePage.bind(this, index + 1) },
-						index + 1
-					);
-				}).bind(this))
-			),
-			React.createElement(
-				'span',
-				{ style: { visibility: this.state.current === pageCount ? 'hidden' : 'visible' } },
-				React.createElement(
-					'a',
-					{ href: 'javascript:;', onClick: this.changePage.bind(this, this.state.current + 1) },
-					'下一页'
-				)
-			),
-			React.createElement(
-				'span',
-				null,
-				'共',
-				React.createElement(
-					'var',
-					null,
-					pageCount
-				),
-				'页'
-			),
-			React.createElement(
-				'span',
-				null,
-				', 转至',
-				React.createElement('input', { type: 'text', className: 'page-input' }),
-				'页'
-			)
+							pageCount
+						),
+						'页'
+					),
+					React.createElement(
+						'span',
+						null,
+						', 转至',
+						React.createElement('input', { type: 'text', onKeyUp: this.handleKeyUp, className: 'page-input' }),
+						'页'
+					)
+				);
+			}).bind(this))
 		);
 	}
 });
