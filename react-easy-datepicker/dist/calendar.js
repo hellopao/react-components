@@ -18,28 +18,10 @@ var Day = React.createClass({
 		this.props.onDayClick(this.props.date);
 	},
 
-	handleMouseOver: function handleMouseOver() {
-		this.setState({
-			active: true
-		});
-	},
-
-	handleMouseOut: function handleMouseOut() {
-		if (this.props.active) {
-			return;
-		}
-
-		this.setState({
-			active: false
-		});
-	},
-
 	render: function render() {
 		return React.createElement(
 			'td',
 			{ onClick: this.handleClick,
-				onMouseOver: this.handleMouseOver,
-				onMouseOut: this.handleMouseOut,
 				className: this.props.active ? 'active' : '' },
 			this.props.date
 		);

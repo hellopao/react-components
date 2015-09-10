@@ -56,7 +56,10 @@
 	var DatePicker = __webpack_require__(158);
 
 	React.render(
-		React.createElement(DatePicker, {sundayFirst: "1"}),
+		React.createElement("div", null, 
+			React.createElement(DatePicker, {sundayFirst: "1"}), 
+			React.createElement(DatePicker, null)
+		),
 		document.getElementById('datePicker') 
 	);
 
@@ -31975,28 +31978,10 @@
 			this.props.onDayClick(this.props.date);
 		},
 
-		handleMouseOver: function handleMouseOver() {
-			this.setState({
-				active: true
-			});
-		},
-
-		handleMouseOut: function handleMouseOut() {
-			if (this.props.active) {
-				return;
-			}
-
-			this.setState({
-				active: false
-			});
-		},
-
 		render: function render() {
 			return React.createElement(
 				'td',
 				{ onClick: this.handleClick,
-					onMouseOver: this.handleMouseOver,
-					onMouseOut: this.handleMouseOut,
 					className: this.props.active ? 'active' : '' },
 				this.props.date
 			);
@@ -32169,7 +32154,7 @@
 
 
 	// module
-	exports.push([module.id, ".calendar {\r\n\twidth:240px;\r\n\tpadding:5px;\r\n\tbackground: #fff;\r\n\tborder: 1px solid #eee;\r\n\tcursor: pointer;\r\n\tfont-size: 14px;\r\n\tmargin-top: 1px;\r\n\tposition: absolute;\r\n\ttop:25px;\r\n\tz-index:2;\r\n}\r\n\r\n.calendar-bar {\r\n\twidth:100%;\r\n\tmargin:5px 0;\r\n}\r\n\r\n.calendar-bar span {\r\n\tdisplay: inline-block;\r\n\ttext-align: center;\r\n}\r\n\r\n.calendar-bar span.next {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev a, .calendar-bar span.next a{\r\n\ttext-decoration: none;\r\n\tcolor: #000;\r\n\tdisplay: inline-block;\r\n\twidth:20px;\r\n}\r\n\r\n.calendar-bar span.time {\r\n\twidth:60%;\r\n\tletter-spacing: 2px;\r\n}\r\n\r\n.calendar-table {\r\n\twidth:100%;\r\n}\r\n\r\n.calendar-table td {\r\n\ttext-align: center;\r\n\tpadding:5px;\r\n}\r\n\r\n.calendar-table td.active {\r\n\tbackground: #ff7713;\r\n\tcolor: #fff;\r\n}", ""]);
+	exports.push([module.id, ".calendar {\r\n\twidth:240px;\r\n\tpadding:5px;\r\n\tbackground: #fff;\r\n\tborder: 1px solid #eee;\r\n\tcursor: pointer;\r\n\tfont-size: 14px;\r\n\tmargin-top: 1px;\r\n\tposition: absolute;\r\n\ttop:25px;\r\n\tz-index:2;\r\n}\r\n\r\n.calendar-bar {\r\n\twidth:100%;\r\n\tmargin:5px 0;\r\n}\r\n\r\n.calendar-bar span {\r\n\tdisplay: inline-block;\r\n\ttext-align: center;\r\n}\r\n\r\n.calendar-bar span.next {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev a, .calendar-bar span.next a{\r\n\ttext-decoration: none;\r\n\tcolor: #000;\r\n\tdisplay: inline-block;\r\n\twidth:20px;\r\n}\r\n\r\n.calendar-bar span.time {\r\n\twidth:60%;\r\n\tletter-spacing: 2px;\r\n}\r\n\r\n.calendar-table {\r\n\twidth:100%;\r\n}\r\n\r\n.calendar-table td {\r\n\ttext-align: center;\r\n\tpadding:5px;\r\n}\r\n\r\n.calendar-table td.active,.calendar-table td:hover {\r\n\tbackground: #ff7713;\r\n\tcolor: #fff;\r\n}", ""]);
 
 	// exports
 
@@ -32490,10 +32475,16 @@
 
 
 	// module
-	exports.push([module.id, ".date-picker {\r\n\tposition: relative;\r\n}\r\n\r\n.date-input {\r\n\tcursor: pointer;\r\n\toutline: none;\r\n\tborder:1px solid #eee;\r\n\tborder-radius: 3px;\r\n\theight: 25px;\r\n\tline-height: 25px;\r\n\tcolor:#5b5b60;\r\n\tfont-size: 12px;\r\n\tpadding:0 5px;\r\n}", ""]);
+	exports.push([module.id, ".date-picker {\r\n\tposition: relative;\r\n}\r\n\r\n.date-input {\r\n\tcursor: pointer;\r\n\toutline: none;\r\n\tborder:1px solid #eee;\r\n\tborder-radius: 3px;\r\n\twidth: 138px;\r\n\theight: 25px;\r\n\tline-height: 25px;\r\n\tcolor:#5b5b60;\r\n\tfont-size: 12px;\r\n\tpadding:0 5px;\r\n\tbackground: url(" + __webpack_require__(254) + ") no-repeat right center;\r\n\tbackground-size: 16px 16px;\r\n\tbackground-position-x: 128px;\r\n}\r\n", ""]);
 
 	// exports
 
+
+/***/ },
+/* 254 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIsSURBVFiF7Zc/aBRBFMZ/e3eCEZUTIQn+aa0srhLBJoqYV9kYx9rqRNJZKIIgaKGFlU2ClYWQnRAQLPaJChYBEUFy/mlFGxFBLIRo1LAWNwvrZG8zi2zOIh8Mx8z3zXvfDu/e7kRpmlIHrGoDGDciH8t0rYBA24C7wEUj8q6Ch8tAF9hfJmoEBDoATAEnKiQH2OdGKVpWdQuwu0STcTut6ngFAyMABXu+GJFf2SSKk+QJcKxC4H/FCvAMmDYib6M4SVJgCXg4YMMocNbxSxUSTQId4Ka3fgg4CiwDnawInxuRS0VRrGrHGbhvRGZCs1vVNtApimtVjwOPgBshRZh6v6H45MYaGJHHwAvgSIiBN8B1YL6igWvA4RL+JTC2bh8wIqvAlYrJs30f1tOFnECtKDwBq3qSfifLowecd0+GVb0AnPY080bkVghfagDYDrS9tTbQBFZz8yINgTzQb0QpMGtEzg0wUwus6gzQHXoNDN3AoCKcpv/fz6MHTBqRH04zC5zxNLER6YbwpQbo9/ynvoEsucMiMOZpFivwwGYRlnySubdZHstG5GeObwI7PM23XKMq5TMUnoBVvQp89cZrqzqSky0UaBYq8MDgE5hjbdfqGZHvuflt4L2neVCBBzaL8D/phL+BrUPIrcBoFCfJK/oXiL1ekW0IGsA9YBdwx6oe3GgDUZwkTSAGTrm1lRrzfQYm8nfMlutMU+4zbALYU7OBv27LUV3X81D8AY+/zD7LpiGOAAAAAElFTkSuQmCC"
 
 /***/ }
 /******/ ]);

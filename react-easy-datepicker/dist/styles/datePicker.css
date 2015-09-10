@@ -7,9 +7,13 @@
 	outline: none;
 	border:1px solid #eee;
 	border-radius: 3px;
+	width: 138px;
 	height: 25px;
 	line-height: 25px;
 	color:#5b5b60;
 	font-size: 12px;
 	padding:0 5px;
+	background: url(../images/calendar.png) no-repeat right center;
+	background-size: 16px 16px;
+	background-position-x: 128px;
 }

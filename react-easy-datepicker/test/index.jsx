@@ -1,8 +1,11 @@
 var React = require('react');
 
-var DatePicker = require('../src/datePicker.jsx');
+var DatePicker = require('../dist/datePicker');
 
 React.render(
-	<DatePicker sundayFirst="1"/>,
+	<div>
+		<DatePicker sundayFirst="1"/>
+		<DatePicker />
+	</div>,
 	document.getElementById('datePicker') 
 );

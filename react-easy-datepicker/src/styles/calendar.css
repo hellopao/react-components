@@ -50,7 +50,7 @@
 	padding:5px;
 }
 
-.calendar-table td.active {
+.calendar-table td.active,.calendar-table td:hover {
 	background: #ff7713;
 	color: #fff;
 }
