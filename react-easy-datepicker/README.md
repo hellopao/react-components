@@ -20,7 +20,7 @@ React.render(
 
 ## Options
 
-## sundayFirst 
+### sundayFirst 
 sunday is the first of the week
 
 ```js
@@ -32,3 +32,7 @@ React.render(
 	document.getElementById('datePicker') 
 );
 ```
+
+## ShortCut
+
+![example](./test/shortcut.png)
