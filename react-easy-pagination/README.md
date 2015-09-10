@@ -17,3 +17,7 @@ React.render(
 	document.getElementById('pagination') 
 );
 ```
+
+## ShortCut
+
+![example](./test/shortcut.png)
