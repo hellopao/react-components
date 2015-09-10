@@ -22,7 +22,7 @@ var Day = React.createClass({
 		return React.createElement(
 			'td',
 			{ onClick: this.handleClick,
-				className: this.props.active ? 'active' : '' },
+				className: this.props.active ? 'active' : this.props.currentMonth ? '' : 'other' },
 			this.props.date
 		);
 	}
@@ -41,7 +41,7 @@ var Calendar = React.createClass({
 
 		return {
 			sundayFirst: sundayFirst,
-			days: days,
+			days: this.props.days || days,
 			current: this.props.select || new Date()
 		};
 	},
@@ -132,22 +132,27 @@ var Calendar = React.createClass({
 				React.createElement(
 					'tbody',
 					null,
-					Array(Math.ceil((days + firstDay) / 7) + 1).join('0').split('').map((function (item, index) {
+					Array(7).join('0').split('').map((function (item, index) {
 						return React.createElement(
 							'tr',
 							null,
 							Array(8).join('0').split('').map((function (item, $index) {
 								var date = index * 7 + $index + 1 - (firstDay - 1);
+								var currentMonth = false;
 
 								if (this.state.sundayFirst) {
 									date -= 1;
 								}
 
-								if (date > days || date <= 0) {
-									date = '';
+								if (date <= 0) {
+									date = moment(this.state.current).set('date', 1).add(date - 1, 'day').get('date');
+								} else if (date > days) {
+									date = date - days;
+								} else {
+									currentMonth = true;
 								}
 
-								return React.createElement(Day, { onDayClick: this.onDayClick, active: currentDate === date, date: date });
+								return React.createElement(Day, { onDayClick: this.onDayClick, active: currentDate === date && currentMonth, currentMonth: currentMonth, date: date });
 							}).bind(this))
 						);
 					}).bind(this))

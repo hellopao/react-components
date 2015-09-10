@@ -33,7 +33,7 @@ var DatePicker = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'date-picker' },
+			{ className: (this.props.className || " ") + "date-picker", style: this.props.style },
 			React.createElement('input', { type: 'text', readOnly: true,
 				className: 'date-input',
 				value: moment(this.state.select).format('YYYY-MM-DD'),
@@ -42,6 +42,7 @@ var DatePicker = React.createClass({
 				current: this.state.current,
 				sundayFirst: this.props.sundayFirst,
 				onDaySelect: this.onDaySelect,
+				days: this.props.days,
 				show: this.state.show })
 		);
 	}

@@ -57,8 +57,21 @@
 
 	React.render(
 		React.createElement("div", null, 
-			React.createElement(DatePicker, {sundayFirst: "1"}), 
-			React.createElement(DatePicker, null)
+			React.createElement("div", null, 
+				React.createElement(DatePicker, {style: {display:"inline-block"}}), 
+				React.createElement(DatePicker, {
+					sundayFirst: "1", 
+					style: {display:"inline-block",marginLeft: "300px"}})	
+			), 
+			React.createElement("div", {style: {marginTop: "300px"}}, 
+				React.createElement(DatePicker, {
+					style: {display:"inline-block"}, 
+					days: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}), 
+				React.createElement(DatePicker, {
+					style: {display:"inline-block",marginLeft: "300px"}, 
+					sundayFirst: "1", 
+					days: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]})
+			)
 		),
 		document.getElementById('datePicker') 
 	);
@@ -20478,7 +20491,7 @@
 		render: function render() {
 			return React.createElement(
 				'div',
-				{ className: 'date-picker' },
+				{ className: (this.props.className || " ") + "date-picker", style: this.props.style },
 				React.createElement('input', { type: 'text', readOnly: true,
 					className: 'date-input',
 					value: moment(this.state.select).format('YYYY-MM-DD'),
@@ -20487,6 +20500,7 @@
 					current: this.state.current,
 					sundayFirst: this.props.sundayFirst,
 					onDaySelect: this.onDaySelect,
+					days: this.props.days,
 					show: this.state.show })
 			);
 		}
@@ -31982,7 +31996,7 @@
 			return React.createElement(
 				'td',
 				{ onClick: this.handleClick,
-					className: this.props.active ? 'active' : '' },
+					className: this.props.active ? 'active' : this.props.currentMonth ? '' : 'other' },
 				this.props.date
 			);
 		}
@@ -32001,7 +32015,7 @@
 
 			return {
 				sundayFirst: sundayFirst,
-				days: days,
+				days: this.props.days || days,
 				current: this.props.select || new Date()
 			};
 		},
@@ -32092,22 +32106,27 @@
 					React.createElement(
 						'tbody',
 						null,
-						Array(Math.ceil((days + firstDay) / 7) + 1).join('0').split('').map((function (item, index) {
+						Array(7).join('0').split('').map((function (item, index) {
 							return React.createElement(
 								'tr',
 								null,
 								Array(8).join('0').split('').map((function (item, $index) {
 									var date = index * 7 + $index + 1 - (firstDay - 1);
+									var currentMonth = false;
 
 									if (this.state.sundayFirst) {
 										date -= 1;
 									}
 
-									if (date > days || date <= 0) {
-										date = '';
+									if (date <= 0) {
+										date = moment(this.state.current).set('date', 1).add(date - 1, 'day').get('date');
+									} else if (date > days) {
+										date = date - days;
+									} else {
+										currentMonth = true;
 									}
 
-									return React.createElement(Day, { onDayClick: this.onDayClick, active: currentDate === date, date: date });
+									return React.createElement(Day, { onDayClick: this.onDayClick, active: currentDate === date && currentMonth, currentMonth: currentMonth, date: date });
 								}).bind(this))
 							);
 						}).bind(this))
@@ -32154,7 +32173,7 @@
 
 
 	// module
-	exports.push([module.id, ".calendar {\r\n\twidth:240px;\r\n\tpadding:5px;\r\n\tbackground: #fff;\r\n\tborder: 1px solid #eee;\r\n\tcursor: pointer;\r\n\tfont-size: 14px;\r\n\tmargin-top: 1px;\r\n\tposition: absolute;\r\n\ttop:25px;\r\n\tz-index:2;\r\n}\r\n\r\n.calendar-bar {\r\n\twidth:100%;\r\n\tmargin:5px 0;\r\n}\r\n\r\n.calendar-bar span {\r\n\tdisplay: inline-block;\r\n\ttext-align: center;\r\n}\r\n\r\n.calendar-bar span.next {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev a, .calendar-bar span.next a{\r\n\ttext-decoration: none;\r\n\tcolor: #000;\r\n\tdisplay: inline-block;\r\n\twidth:20px;\r\n}\r\n\r\n.calendar-bar span.time {\r\n\twidth:60%;\r\n\tletter-spacing: 2px;\r\n}\r\n\r\n.calendar-table {\r\n\twidth:100%;\r\n}\r\n\r\n.calendar-table td {\r\n\ttext-align: center;\r\n\tpadding:5px;\r\n}\r\n\r\n.calendar-table td.active,.calendar-table td:hover {\r\n\tbackground: #ff7713;\r\n\tcolor: #fff;\r\n}", ""]);
+	exports.push([module.id, ".calendar {\r\n\twidth:240px;\r\n\tpadding:5px;\r\n\tbackground: #fff;\r\n\tborder: 1px solid #eee;\r\n\tcursor: pointer;\r\n\tfont-size: 14px;\r\n\tmargin-top: 1px;\r\n\tposition: absolute;\r\n\ttop:25px;\r\n\tz-index:2;\r\n}\r\n\r\n.calendar-bar {\r\n\twidth:100%;\r\n\tmargin:5px 0;\r\n}\r\n\r\n.calendar-bar span {\r\n\tdisplay: inline-block;\r\n\ttext-align: center;\r\n}\r\n\r\n.calendar-bar span.next {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev {\r\n\twidth:20%;\r\n}\r\n\r\n.calendar-bar span.prev a, .calendar-bar span.next a{\r\n\ttext-decoration: none;\r\n\tcolor: #000;\r\n\tdisplay: inline-block;\r\n\twidth:20px;\r\n}\r\n\r\n.calendar-bar span.time {\r\n\twidth:60%;\r\n\tletter-spacing: 2px;\r\n}\r\n\r\n.calendar-table {\r\n\twidth:100%;\r\n}\r\n\r\n.calendar-table td {\r\n\ttext-align: center;\r\n\tpadding:5px;\r\n}\r\n\r\n.calendar-table td.active,.calendar-table td:hover {\r\n\tbackground: #ff7713;\r\n\tcolor: #fff;\r\n}\r\n\r\n.calendar-table td.other {\r\n\tcolor: #999;\r\n}", ""]);
 
 	// exports
 

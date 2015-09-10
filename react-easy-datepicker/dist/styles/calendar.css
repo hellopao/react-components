@@ -54,3 +54,7 @@
 	background: #ff7713;
 	color: #fff;
 }
+
+.calendar-table td.other {
+	color: #999;
+}
