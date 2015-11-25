@@ -10,7 +10,7 @@ npm install react-easy-pagination
 
 ```js
 var React = require('react');
-var DatePicker = require('react-easy-pagination');
+var Pagination = require('react-easy-pagination');
 
 React.render(
 	<Pagination pageSize="10" totalCount="100" current="1"/>,
